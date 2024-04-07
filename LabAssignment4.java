@@ -13,25 +13,25 @@ class PasswordError extends Exception {
 public class Main {
     public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
-    int remainingAttempts = 3;
+    int attempts = 3;
 
-    while (remainingAttempts > 0) {
+    while (attempts > 0) {
     System.out.print("Enter Password: ");
     String enteredPassword = scanner.nextLine();
-    remainingAttempts--;
+    attempts--;
 
     if (enteredPassword.equals("password")) {
     System.out.println("Login successful!!!");
     break;
-    } else if (remainingAttempts > 0) {
+    } else if (attempts > 0) {
         try {
-        throw new PasswordError("Invalid password. Tries left: " + remainingAttempts);
+        throw new PasswordError("Invalid password. Tries left: " + attempts);
         } catch (PasswordError e) {
         System.out.println(e.getMessage());
         }
         }
     }
-    if (remainingAttempts == 0) {
+    if (attempts == 0) {
         try {
         throw new TooManyLoginAttempts("Maximum login attempts exceeded.");
         } catch (TooManyLoginAttempts e) {
